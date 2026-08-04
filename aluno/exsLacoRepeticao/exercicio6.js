@@ -1,12 +1,15 @@
+let contador = 1;
 let maiorNumero = -Infinity; 
 
-for (let i = 1; i <= 5; i++) {
-    let numero = Number(prompt("Digite o número " + i + " de 5:"));
+do {
+    let numero = Number(prompt("Digite o número " + contador + " de 5:"));
 
-    
     if (numero > maiorNumero) {
-        maiorNumero = numero; 
+        maiorNumero = numero;
     }
-}
+
+    contador++; 
+
+} while (contador <= 5); 
 
 alert("O maior número digitado foi: " + maiorNumero);
