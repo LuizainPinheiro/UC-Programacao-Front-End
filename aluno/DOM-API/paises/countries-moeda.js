@@ -12402,11 +12402,13 @@ const countries = [
 	}
 ];
 
+let secao = document.querySelector(".countries")
 
-function listarPaises(){
-let container = document.querySelector(".countries");
+let dolar = ["Dólar dos Estados Unidos"]
  
-const paises = countries.map(pais => {
+const paises = countries
+    .filter(pais => pais['unidades-monetarias']?.some(moeda => dolar.includes(moeda.nome)))
+    .map(pais => {
     const sigla = pais.id["ISO-3166-1-ALPHA-2"].toLowerCase();
  
     return `
@@ -12417,14 +12419,11 @@ const paises = countries.map(pais => {
             <p>Sigla: ${sigla.toUpperCase()}</p>
             <p>Região: ${pais.localizacao.regiao.nome}</p>
             <p>Capital: ${pais.governo.capital.nome}</p>
+            <p>Moeda: ${pais["unidades-monetarias"][0].nome}</p>
         </div>
     `;
 }).join("");
-
  
-container.innerHTML = paises;
-}
-
-
-listarPaises()
+secao.innerHTML = paises;
+ 
 

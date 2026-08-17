@@ -12403,28 +12403,31 @@ const countries = [
 ];
 
 
-function listarPaises(){
-let container = document.querySelector(".countries");
- 
-const paises = countries.map(pais => {
-    const sigla = pais.id["ISO-3166-1-ALPHA-2"].toLowerCase();
- 
-    return `
-        <div class="fundo">
-            <img src="https://flagcdn.com/w80/${sigla}.png" alt="Bandeira de ${pais.nome.abreviado}">
- 
+function listarContinentes(){
+
+	let continentes = [
+		"América",
+		"África"
+	];
+
+	let container = document.querySelector(".countries");
+
+	const paises = countries.filter(pais => continentes.includes(pais.localizacao.regiao.nome)).map(pais => {
+			const sigla = pais.id["ISO-3166-1-ALPHA-2"].toLowerCase();
+			
+			return `<div class="fundo">
+			<img src="https://flagcdn.com/w80/${sigla}.png" alt="Bandeira de ${pais.nome.abreviado}">
             <h3>${pais.nome.abreviado}</h3>
             <p>Sigla: ${sigla.toUpperCase()}</p>
             <p>Região: ${pais.localizacao.regiao.nome}</p>
             <p>Capital: ${pais.governo.capital.nome}</p>
-        </div>
-    `;
-}).join("");
+			</div>`;
+		}).join("");
 
  
 container.innerHTML = paises;
 }
 
 
-listarPaises()
+listarContinentes();
 
