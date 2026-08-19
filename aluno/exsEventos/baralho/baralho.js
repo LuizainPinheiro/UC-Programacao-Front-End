@@ -55,3 +55,24 @@ const baralho = [
 	{ "valor": "Dama", "naipe": "Paus", "imagem": "https://deckofcardsapi.com/static/img/QC.png" },
 	{ "valor": "Rei", "naipe": "Paus", "imagem": "https://deckofcardsapi.com/static/img/KC.png" }
 ];
+
+let botao = document.querySelector("#comprar");
+let cartas = document.querySelector("#cartas");
+
+botao.addEventListener("click", function() {
+
+    if (baralho.length === 0) {
+        cartas.textContent = "0 cartas";
+        return; 
+    }
+    let posicaoSorteada = Math.floor(Math.random() * baralho.length);
+
+    let cartaRemovida = baralho.splice(posicaoSorteada, 1);
+    
+    let carta = cartaRemovida[0];
+
+    cartas.innerHTML = 
+        '<img src="' + carta.imagem + '" alt="' + carta.valor + ' de ' + carta.naipe + '">' +
+        '<p>' + carta.valor + ' de ' + carta.naipe + '</p>';
+
+});
